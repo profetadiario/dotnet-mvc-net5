@@ -21,6 +21,7 @@ namespace DevIO.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Setando que caso exista uma entidade do tipo string, automáticamente será nvarchar 100 no banco, mas pode ser sobreescrita essa premissa
             foreach (var property in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetProperties()
                     .Where(p => p.ClrType == typeof(string))))
@@ -28,6 +29,7 @@ namespace DevIO.Data.Context
 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(MeuDbContext).Assembly);
 
+            //Lambda pra informar para todas as entidades não deletarem a tabela que pertence a FK, apenas a tabela específica
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 
             base.OnModelCreating(modelBuilder);

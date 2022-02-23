@@ -13,6 +13,7 @@ namespace DevIO.Data.Repository
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity, new()
     {
         protected readonly MeuDbContext Db;
+        //DbSet = Db.Set<TEntity>(), usado para deixar menos verboso
         protected readonly DbSet<TEntity> DbSet;
 
         protected Repository(MeuDbContext db)
@@ -23,6 +24,7 @@ namespace DevIO.Data.Repository
 
         public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
         {
+            //As no tracking usado para reduzir custos de memória, maior performance
             return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
         }
 

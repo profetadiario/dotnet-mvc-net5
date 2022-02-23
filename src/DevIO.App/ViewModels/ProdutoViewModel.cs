@@ -26,6 +26,8 @@ namespace DevIO.App.ViewModels
         [StringLength(1000, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
         public string Descricao { get; set; }
 
+        //imagem upload não está como required pois na hora de fazer uma edição, não deve ser obrigatório subir um novo arquivo
+        //baseado no código setado no js de criação um produto, seu required se encontra la
         [DisplayName("Imagem do Produto")]
         public IFormFile ImagemUpload { get; set; }
 

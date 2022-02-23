@@ -59,7 +59,11 @@
                     @Html.DisplayFor(model => model.Endereco.Estado)
                 </td>
                 <td>
+@*                  Usabilidade caso eu necessite de utilizar claims, a tag helper faz com que a função apenas apareça para o usuário que possui a claim  
                     <a supress-by-action="Edit,ObterEndereco" asp-action="AtualizarEndereco" asp-route-id="@Model.Id" class="btn btn-info" data-modal="">
+                        <span title="Editar" class="fa fa-pencil-alt"></span>
+                    </a>*@
+                    <a asp-action="AtualizarEndereco" asp-route-id="@Model.Id" class="btn btn-info" data-modal="">
                         <span title="Editar" class="fa fa-pencil-alt"></span>
                     </a>
                 </td>
